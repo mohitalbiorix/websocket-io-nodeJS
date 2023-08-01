@@ -1,0 +1,36 @@
+Socket.io project implement
+
+package: npm i socket-io
+
+Topics:
+1. Connect and Disconnet of user with socket.io.
+2. Events in socket.io.
+    // server side Events   client side event
+    * connect               * connect
+    * dissconnect           * connect_error
+    * message               * connect_timeout
+    * reconnect             * reconnect
+    * ping
+    * join 
+    * leave
+
+* Note:
+    1. io.sockets.emit
+
+    This method sends a message to all connected clients, including the one that initiated the communication. 
+    When you use io.sockets.emit, the event data will be broadcasted to all connected sockets (clients) that are currently connected to the server.
+    
+    io.sockets.emit('chatMessage', 'Hello everyone!');
+
+    2. io.emit
+
+    This is essentially the same as io.sockets.emit, and it also sends a message to all connected clients, including the sender. This is a shorthand for io.sockets.emit and has the same effect.
+
+    io.emit('chatMessage', 'Hello everyone!');
+
+    3. socket.broadcast
+
+    Unlike the previous two methods, socket.broadcast sends a message to all connected clients except the client that initiated the communication (the one associated with the socket object used to call the method). 
+    It is useful when you want to broadcast a message to all other connected clients except the one who sent the message.
+    
+    socket.broadcast.emit('chatMessage', 'Hello everyone except the sender!');

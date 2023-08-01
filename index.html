@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
+        integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <script>
+        // initialization of socket in front-end side
+        var socket = io();
+
+        // get message which send from server.
+
+        /*  socket.on('message',(data)=>{
+             document.write(data);
+             document.write('<br>')
+         }); */
+
+        // fetch custom event
+        /*   socket.on('myCustomEvent',(data)=>{
+              document.write(data.description);
+          }); */
+
+        // fetch broadcast data
+        /* socket.on('brodacast',(data)=>{
+            document.write(data.message);
+        }); */
+
+        socket.on('newuserconnect', (data) => {
+            document.write(data.message);
+        });
+
+        // for custom event
+        // var socket = io('/custom-namespace');
+        // socket.on('customEvent',(data)=>{
+        //     document.write(data);
+        // })
+
+
+        // send data to serve using create custom event.
+        socket.emit('customClientEvent', { description: "Send data from Client to Server!" });
+
+        // create a room
+        socket.on('connectedRoom', (data) => {
+            document.write(data);
+        })
+    </script>
+</body>
+
+</html>
